@@ -1,0 +1,25 @@
+# Resource limits for a 32 GB / 8 vCPU host.
+# Adjust mem_limit values if your host differs.
+# Place this file in the Malcolm checkout directory alongside docker-compose.yml.
+
+services:
+  opensearch:
+    environment:
+      OPENSEARCH_JAVA_OPTS: "-Xms8g -Xmx8g"
+    mem_limit: 10g
+
+  zeek:
+    mem_limit: 4g
+
+  suricata:
+    mem_limit: 2g
+
+  arkime:
+    mem_limit: 4g
+    environment:
+      ARKIME_PACKET_THREADS: "4"
+
+  # Set the live capture interface here if not set in .env
+  # zeek:
+  #   environment:
+  #     PCAP_IFACE: eth1
